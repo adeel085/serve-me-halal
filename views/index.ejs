@@ -1,0 +1,37 @@
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<div class="site-content">
+    <div class="map-bg" style="background-image: url('<%= baseURL %>/images/map.PNG');">
+        <div class="map-bg-overlay">
+            <div class="home-form-area">
+                <h1 class="text-center" style="font-weight: bold;"><%= appName %></h1>
+                <p class="text-center basic-info-desc">Find the best places to eat, drink, shop, or visit in any city in the world. Access over 75 million short tips from local experts.</p>
+                <form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="What are you looking for?">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Location">
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="button2" id="search-btn" type="button" value="Search">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#search-btn").click(function() {
+            window.location.href = "<%= baseURL %>/results";
+        });
+    });
+</script>
+
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,151 @@
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<div id="claimModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Claim This Business Listing</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/action_page.php">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" placeholder="Enter business name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="phone">Phone:</label>
+                        <div class="col-sm-10">          
+                            <input type="text" class="form-control" id="phone" placeholder="Enter phone #" name="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="website">Website:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="website" placeholder="Enter website URL" name="website">
+                        </div>
+                    </div>
+                    <div class="form-group">        
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="button2" style="padding: 8px 12px;">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+  
+    </div>
+</div>
+
+<div class="gallery-overlay">
+    <span id="close-gallery-btn">
+        <i class="fa fa-times"></i>
+    </span>
+</div>
+
+<div class="site-content container">
+    <div class="restaurant-cover-images">
+        <div class="primary-image">
+            <img src="<%= baseURL %>/images/food5.webp"/>
+        </div>
+        <div class="secondary-images-gallery">
+            <div class="grid-item" style="background-image: url('<%= baseURL %>/images/food1.jpeg');">
+
+            </div>
+            <div class="grid-item" style="background-image: url('<%= baseURL %>/images/food2.jpeg');">
+                
+            </div>
+            <div class="grid-item" style="background-image: url('<%= baseURL %>/images/food3.webp');">
+                
+            </div>
+            <div class="grid-item" style="background-image: url('<%= baseURL %>/images/food4.webp');" id="view-gallery-handler">
+                <div class="overlay">
+                    <span>View Gallery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="restaurant-description">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="restaurant-info-section">
+                    <h2>Hungry Pizza</h2>
+                    <div class="restaurant-location-text">
+                        <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                    </div>
+                    <div class="restaurant-socials">
+                        <ul>
+                            <li>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </li>
+                            <li style="font-size: 23px; margin-top: 3px;">
+                                <a href="#"><i class="fas fa-link"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum, libero sit amet gravida elementum, nibh lorem tempus nulla, ac tempus massa dolor at diam. Suspendisse auctor convallis eros, ac sagittis dolor luctus sit amet. Aliquam at tempor mauris. Suspendisse convallis nunc a rhoncus mollis. Phasellus ac sem consectetur, condimentum lacus a, hendrerit urna.</p>
+
+                <button class="button4" id="claim-listing-btn">Claim this Business Listing</button>
+            </div>
+            <div class="col-md-4">
+                <div class="restaurant-map-window">
+                    <div>
+                        <span class="d-block" style="font-size: 18px;">Call</span>
+                        <a class="clickable-text" href="#">+923314075902</a>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <span class="d-block" style="font-size: 18px;">Location</span>
+                        <iframe style="margin-top: 10px;" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+
+                        <div style="margin-top: 6px;">
+                            <button class="button2" style="padding: 6px 10px;">Directions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#claim-listing-btn").click(function() {
+            $("#claimModal").modal("show");
+        });
+
+        $("#view-gallery-handler").click(function() {
+            $(".gallery-overlay").fadeIn();
+            $("body").css("overflow", "hidden");
+        });
+
+        $("#close-gallery-btn").click(function() {
+            $(".gallery-overlay").fadeOut();
+            $("body").css("overflow", "auto");
+        });
+    });
+</script>
+
+<%- include('partials/footer.ejs') %>

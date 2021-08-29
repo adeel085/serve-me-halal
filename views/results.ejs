@@ -1,0 +1,152 @@
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<div id="mobile-reveal-list-btn">
+    <span><i class="fas fa-list"></i></span>
+</div>
+
+<div class="site-content">
+    <div class="results-area">
+        <div class="restaurants-list-area">
+            <div class="suggestions-info">
+                <div>
+                    Suggestions for <b>food</b> near <b>New York</b>
+                </div>
+                <div>
+                    <span id="reveal-map-btn" class="clickable-text"><i class="fas fa-map"></i>&nbsp;View on Map</span>
+                </div>
+            </div>
+            <div class="restaurants-list-wrapper">
+                <ul class="restaurants-list">
+                    <li>
+                        <div class="restaurant-primary-info">
+                            <div class="restaurant-img-wrapper">
+                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant1.jpeg">
+                            </div>
+                            <div class="restaurant-info-wrapper">
+                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Food Fort Street</a>
+                                <div class="restaurant-addr-info">
+                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                                </div>
+                                <div class="restaurant-short-description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="restaurant-primary-info">
+                            <div class="restaurant-img-wrapper">
+                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant2.gif">
+                            </div>
+                            <div class="restaurant-info-wrapper">
+                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Kitchen Cuisine</a>
+                                <div class="restaurant-addr-info">
+                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                                </div>
+                                <div class="restaurant-short-description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="restaurant-primary-info">
+                            <div class="restaurant-img-wrapper">
+                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant3.jpeg">
+                            </div>
+                            <div class="restaurant-info-wrapper">
+                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Jade Cafe</a>
+                                <div class="restaurant-addr-info">
+                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                                </div>
+                                <div class="restaurant-short-description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="restaurant-primary-info">
+                            <div class="restaurant-img-wrapper">
+                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant4.jpg">
+                            </div>
+                            <div class="restaurant-info-wrapper">
+                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Tuscany Courtyard</a>
+                                <div class="restaurant-addr-info">
+                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                                </div>
+                                <div class="restaurant-short-description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="restaurant-primary-info">
+                            <div class="restaurant-img-wrapper">
+                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant5.jpeg">
+                            </div>
+                            <div class="restaurant-info-wrapper">
+                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Spice Bazar</a>
+                                <div class="restaurant-addr-info">
+                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                                </div>
+                                <div class="restaurant-short-description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="restaurant-primary-info">
+                            <div class="restaurant-img-wrapper">
+                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant6.jpeg">
+                            </div>
+                            <div class="restaurant-info-wrapper">
+                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Karados Restaurant</a>
+                                <div class="restaurant-addr-info">
+                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                                </div>
+                                <div class="restaurant-short-description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="map-area">
+            <div class="map-wrapper">
+                <iframe width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".navbar>div").removeClass("container").addClass("container-fluid");
+
+        $("#reveal-map-btn").click(function() {
+            $("body").addClass("results-list-hidden-map-revealed");
+            setTimeout(() => {
+                $(".map-area").css("z-index", "0");
+            }, 500);
+        });
+
+        $("#mobile-reveal-list-btn").click(function() {
+            $(".map-area").css("z-index", "-1");
+            $("body").removeClass("results-list-hidden-map-revealed");
+        });
+    });
+</script>
+
+<%- include('partials/footer.ejs') %>
