@@ -26,5 +26,5 @@ app.use("/restaurant", restaurantRoute);
 
 // Start listening on port
 app.listen(config.web.port, () => {
-    console.log('App listening on port ' + config.web.port + '!')
+    console.log('App listening on port ' + config.web.port + '!');
 });

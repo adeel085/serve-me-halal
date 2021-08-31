@@ -11,13 +11,21 @@ config.db = {}
 // web address config live
 config.web.port = process.env.PORT || 3000;
 config.web.baseURL = 'https://servemehalal.herokuapp.com';
-config.web.appName = 'ServeMeHalal'
+config.web.appName = 'ServeMeHalal';
 
-// Local Database config
-config.db.host = 'localhost'
-config.db.user = 'root'
-config.db.password = ''
-config.db.dbName = 'halal_guide_db'
-config.db.port = 3306
+// Remote Database config
+config.db.host = 'us-cdbr-east-04.cleardb.com';
+config.db.user = 'b9896834e3ddba';
+config.db.password = '6bc204fa';
+config.db.dbName = 'heroku_c80ad99034f460e';
+config.db.port = 3306;
 
-module.exports = config
+
+// Local database config
+// config.db.host = 'localhost';
+// config.db.user = 'root';
+// config.db.password = '';
+// config.db.dbName = 'serve_me_halal_db';
+// config.db.port = 3306;
+
+module.exports = config;

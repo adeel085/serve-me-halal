@@ -85,24 +85,22 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="restaurant-info-section">
-                    <h2>Hungry Pizza</h2>
+                    <h2><%= restaurant.name %></h2>
                     <div class="restaurant-location-text">
-                        <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                        <i class="fas fa-map-marker-alt"></i> <%= restaurant.address %>
                     </div>
                     <div class="restaurant-socials">
                         <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                            </li>
-                            <li style="font-size: 23px; margin-top: 3px;">
-                                <a href="#"><i class="fas fa-link"></i></a>
-                            </li>
+                            <% if (restaurant.facebook.trim() != "") { %>
+                                <li>
+                                    <a href="<%= restaurant.facebook %>" target="_blank"><i class="fab fa-facebook"></i></a>
+                                </li>
+                            <% } %>
+                            <% if (restaurant.website.trim() != "") { %>
+                                <li style="font-size: 23px; margin-top: 3px;">
+                                    <a href="<%= restaurant.website %>" target="_blank"><i class="fas fa-link"></i></a>
+                                </li>
+                            <% } %>
                         </ul>
                     </div>
                 </div>
@@ -114,11 +112,11 @@
                 <div class="restaurant-map-window">
                     <div>
                         <span class="d-block" style="font-size: 18px;">Call</span>
-                        <a class="clickable-text" href="#">+923314075902</a>
+                        <a class="clickable-text" href="#"><%= restaurant.phone %></a>
                     </div>
                     <div style="margin-top: 10px;">
                         <span class="d-block" style="font-size: 18px;">Location</span>
-                        <iframe style="margin-top: 10px;" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                        <iframe style="margin-top: 10px;" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<%= restaurant.latitude %>,<%= restaurant.longitude %>+(<%= restaurant.name %>)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
 
                         <div style="margin-top: 6px;">
                             <button class="button2" style="padding: 6px 10px;">Directions</button>

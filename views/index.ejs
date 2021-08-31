@@ -8,13 +8,23 @@
             <div class="home-form-area">
                 <h1 class="text-center" style="font-weight: bold;"><%= appName %></h1>
                 <p class="text-center basic-info-desc">Find the best places to eat, drink, shop, or visit in any city in the world. Access over 75 million short tips from local experts.</p>
-                <form>
+                <form autocomplete="off">
                     <div class="row">
                         <div class="col-sm-6">
-                            <input type="text" placeholder="What are you looking for?">
+                            <div class="auto-complete-input-wrapper">
+                                <input autocomplete="off" type="text" placeholder="What are you looking for?" id="food-type-input">
+                                <ul class="auto-complete-list" id="foods-suggestions">
+
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" placeholder="Location">
+                            <div class="auto-complete-input-wrapper">
+                                <input autocomplete="off" type="text" placeholder="Location" id="location-input">
+                                <ul class="auto-complete-list" id="locations-suggestions">
+                                    
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-sm-2">
                             <input class="button2" id="search-btn" type="button" value="Search">
@@ -29,8 +39,115 @@
 <script>
     $(document).ready(function() {
         $("#search-btn").click(function() {
-            window.location.href = "<%= baseURL %>/results";
+            let foodType = $("#food-type-input").val().trim();
+            let location = $("#location-input").val().trim();
+
+            window.location.href = `<%= baseURL %>/results?location=${location}&foodType=${foodType}`;
         });
+
+        let locationKeyTime, foodTypeKeyTime;
+        let locationRequestTimeout, foodTypeRequestTimeout;
+
+        $("#food-type-input").on("keyup", function(e) {
+
+            if (foodTypeKeyTime == undefined) {
+                foodTypeKeyTime = Date.now();
+            }
+            else {
+                if (Date.now() - foodTypeKeyTime < 1000) {
+                    clearTimeout(foodTypeRequestTimeout);
+                }
+
+                foodTypeKeyTime = Date.now();
+            }
+
+            foodTypeRequestTimeout = setTimeout(() => {
+                foodTypeMatchRequest();
+            }, 1000);
+        });
+
+
+        $("#location-input").on("keyup", function(e) {
+            
+            if (locationKeyTime == undefined) {
+                locationKeyTime = Date.now();
+            }
+            else {
+                if (Date.now() - locationKeyTime < 1000) {
+                    clearTimeout(locationRequestTimeout);
+                }
+
+                locationKeyTime = Date.now();
+            }
+
+            locationRequestTimeout = setTimeout(() => {
+                locationMatchRequest();
+            }, 1000);
+        });
+
+        function locationMatchRequest() {
+            let value = $("#location-input").val();
+
+            if (value == "") {
+                $("#locations-suggestions").css("display", "none");
+                return;
+            }
+
+            $.ajax({
+                url: "<%= baseURL %>/restaurantsLocation?q=" + value,
+                methos: "GET",
+                dataType: "json",
+                success: (res) => {
+
+                    $("#locations-suggestions").empty();
+
+                    if (res.length == 0) {
+                        $("#locations-suggestions").css("display", "none");
+                        return; 
+                    }
+
+                    res.forEach((restaurant, index) => {
+                        $("#locations-suggestions").append(`<li data-value="${restaurant.address}">${restaurant.address}</li>`);
+                    });
+                    $("#locations-suggestions").css("display", "block");
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
+        }
+
+        function foodTypeMatchRequest() {
+            let value = $("#food-type-input").val();
+
+            if (value == "") {
+                $("#foods-suggestions").css("display", "none");
+                return;
+            }
+
+            $.ajax({
+                url: "<%= baseURL %>/foodTypes?q=" + value,
+                method: "GET",
+                dataType: "json",
+                success: (res) => {
+
+                    $("#foods-suggestions").empty();
+
+                    if (res.length == 0) {
+                        $("#foods-suggestions").css("display", "none");
+                        return; 
+                    }
+
+                    res.forEach((restaurant, index) => {
+                        $("#foods-suggestions").append(`<li data-value="${restaurant.data}">${restaurant.data}</li>`);
+                    });
+                    $("#foods-suggestions").css("display", "block");
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
+        }
     });
 </script>
 

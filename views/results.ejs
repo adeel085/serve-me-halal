@@ -11,7 +11,10 @@
         <div class="restaurants-list-area">
             <div class="suggestions-info">
                 <div>
-                    Suggestions for <b>food</b> near <b>New York</b>
+                    Suggestions for <b><%= search %></b> 
+                    <% if (location != "") { %>
+                        near <b><%= location %></b>
+                    <% } %>
                 </div>
                 <div>
                     <span id="reveal-map-btn" class="clickable-text"><i class="fas fa-map"></i>&nbsp;View on Map</span>
@@ -19,107 +22,25 @@
             </div>
             <div class="restaurants-list-wrapper">
                 <ul class="restaurants-list">
-                    <li>
-                        <div class="restaurant-primary-info">
-                            <div class="restaurant-img-wrapper">
-                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant1.jpeg">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Food Fort Street</a>
-                                <div class="restaurant-addr-info">
-                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
+                    <% for (let i = 0; i < restaurants.length; i++) { %>
+                        <li>
+                            <div class="restaurant-primary-info">
+                                <div class="restaurant-img-wrapper">
+                                    <img class="restaurant-image" src="<%= baseURL %>/images/restaurant1.jpeg">
                                 </div>
-                                <div class="restaurant-short-description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                <div class="restaurant-info-wrapper">
+                                    <a class="restaurant-name-link" href="<%= baseURL %>/restaurant/<%= restaurants[i].id %>"><%= restaurants[i].name %></a>
+                                    <div class="restaurant-addr-info">
+                                        <i class="fas fa-map-marker-alt"></i> <%= restaurants[i].address %>
+                                    </div>
+                                    <div class="restaurant-short-description">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    <% } %>
                     
-                    <li>
-                        <div class="restaurant-primary-info">
-                            <div class="restaurant-img-wrapper">
-                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant2.gif">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Kitchen Cuisine</a>
-                                <div class="restaurant-addr-info">
-                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
-                                </div>
-                                <div class="restaurant-short-description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="restaurant-primary-info">
-                            <div class="restaurant-img-wrapper">
-                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant3.jpeg">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Jade Cafe</a>
-                                <div class="restaurant-addr-info">
-                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
-                                </div>
-                                <div class="restaurant-short-description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="restaurant-primary-info">
-                            <div class="restaurant-img-wrapper">
-                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant4.jpg">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Tuscany Courtyard</a>
-                                <div class="restaurant-addr-info">
-                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
-                                </div>
-                                <div class="restaurant-short-description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="restaurant-primary-info">
-                            <div class="restaurant-img-wrapper">
-                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant5.jpeg">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Spice Bazar</a>
-                                <div class="restaurant-addr-info">
-                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
-                                </div>
-                                <div class="restaurant-short-description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="restaurant-primary-info">
-                            <div class="restaurant-img-wrapper">
-                                <img class="restaurant-image" src="<%= baseURL %>/images/restaurant6.jpeg">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <a class="restaurant-name-link" href="<%= baseURL %>/restaurant">Karados Restaurant</a>
-                                <div class="restaurant-addr-info">
-                                    <i class="fas fa-map-marker-alt"></i> addr. XYZ, abc
-                                </div>
-                                <div class="restaurant-short-description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
