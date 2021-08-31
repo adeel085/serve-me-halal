@@ -54,7 +54,7 @@
                 foodTypeKeyTime = Date.now();
             }
             else {
-                if (Date.now() - foodTypeKeyTime < 1000) {
+                if (Date.now() - foodTypeKeyTime < 600) {
                     clearTimeout(foodTypeRequestTimeout);
                 }
 
@@ -73,7 +73,7 @@
                 locationKeyTime = Date.now();
             }
             else {
-                if (Date.now() - locationKeyTime < 1000) {
+                if (Date.now() - locationKeyTime < 600) {
                     clearTimeout(locationRequestTimeout);
                 }
 
