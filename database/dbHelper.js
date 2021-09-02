@@ -42,6 +42,18 @@ module.exports = {
         });
     },
 
+    getRestaurantByZipAndFoodType: (conn, foodType, zipCode) => {
+        return new Promise((resolve, reject) => {
+            let sql = `SELECT * FROM restaurants WHERE (cuisine LIKE '%${foodType}%' OR name LIKE '%${foodType}%') AND zip_code = '${zipCode}'`;
+            conn.query(sql, [], (err, rows) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(rows);
+            });
+        });
+    },
+
     getRestaurantsByLocationAndFoodType: (conn, foodType, location) => {
         return new Promise((resolve, reject) => {
             let sql = `SELECT * FROM restaurants WHERE (cuisine LIKE '%${foodType}%' OR name LIKE '%${foodType}%') AND address LIKE '%${location}%'`;

@@ -9,7 +9,7 @@ config.db = {}
 // config.web.appName = 'ServeMeHalal'
 
 // web address config live
-config.web.port = process.env.PORT || 3000;
+// config.web.port = process.env.PORT || 3000;
 config.web.baseURL = 'https://servemehalal.herokuapp.com';
 config.web.appName = 'ServeMeHalal';
 

@@ -16,6 +16,7 @@ app.use(express.static(__dirname + '/public'));
 
 let indexRoute = require("./routes/indexRoute");
 let loginRoute = require("./routes/loginRoute");
+let signupRoute = require("./routes/signupRoute");
 let resultsRoute = require("./routes/resultsRoute");
 let restaurantRoute = require("./routes/restaurantRoute");
 
@@ -23,6 +24,7 @@ app.use("/", indexRoute);
 app.use("/login", loginRoute);
 app.use("/results", resultsRoute);
 app.use("/restaurant", restaurantRoute);
+app.use("/signup", signupRoute);
 
 // Start listening on port
 app.listen(config.web.port, () => {
