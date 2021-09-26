@@ -45,15 +45,15 @@
             </div>
         </div>
         <div class="map-area">
-            <div class="map-wrapper">
-                <iframe width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+            <div class="map-wrapper" id="map">
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function() {     
+
         $(".navbar>div").removeClass("container").addClass("container-fluid");
 
         $("#reveal-map-btn").click(function() {
@@ -70,4 +70,40 @@
     });
 </script>
 
+
+<script>
+    function myMap() {
+        
+        var latitude = <%= restaurants[0].latitude %>;
+        var longitude = <%= restaurants[0].longitude %>;
+        var mapProp = {
+            center: new google.maps.LatLng(latitude,longitude),
+            zoom: 15,
+        };
+        
+        var map = new google.maps.Map(document.getElementById("map"),mapProp);        
+
+        <% for(var i = 0; i < restaurants.length; i++) { %>
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(<%= restaurants[i].latitude %>,<%= restaurants[i].longitude %>),
+                map: map
+            });
+            addInfoBox(map, marker, `<%= restaurants[i].name %>`, `<%= restaurants[i].address %>`);
+        <%}%>          
+    }
+    function addInfoBox(map, marker, name, address) {
+        var infowindow = new google.maps.InfoWindow({
+            content: `
+                <div>
+                    <h2>${name}</h2>
+                    <h4>${address}</h4>
+                </div>
+            `
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+        }); 
+    }    
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPnbUmYNmXy3aX9T71GT6BjRxFWC8z_1w&callback=myMap"></script>
 <%- include('partials/footer.ejs') %>

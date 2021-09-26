@@ -24,6 +24,8 @@ router.get("/", async (req, res) => {
 
     dbConnection.disconnect(conn);
 
+    console.log(restaurants);
+
     res.render("results", {
         baseURL: config.web.baseURL,
         appName: config.web.appName,
