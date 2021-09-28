@@ -163,7 +163,8 @@
 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(latitude, longitude),
-            map: map
+            icon: "<%= baseURL %>/images/marker.png",
+            map: map,
         });
 
         var infowindow = new google.maps.InfoWindow({

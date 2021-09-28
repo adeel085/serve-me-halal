@@ -89,7 +89,8 @@
         <% for(var i = 0; i < restaurants.length; i++) { %>
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(<%= restaurants[i].latitude %>,<%= restaurants[i].longitude %>),
-                map: map
+                icon: "<%= baseURL %>/images/marker.png",
+                map: map,
             });
             addInfoBox(map, marker, `<%= restaurants[i].name %>`, `<%= restaurants[i].address %>`);
         <%}%>          
