@@ -116,8 +116,9 @@
                     </div>
                     <div style="margin-top: 10px;">
                         <span class="d-block" style="font-size: 18px;">Location</span>
-                        <iframe style="margin-top: 10px;" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<%= restaurant.latitude %>,<%= restaurant.longitude %>+(<%= restaurant.name %>)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-
+                        <div style="height: 234px" id="map">
+                            
+                        </div>
                         <div style="margin-top: 6px;">
                             <button class="button2" style="padding: 6px 10px;">Directions</button>
                         </div>
@@ -145,5 +146,39 @@
         });
     });
 </script>
+
+<script>
+    function initMap() {
+        var latitude = <%= restaurant.latitude %>;
+        var longitude = <%= restaurant.longitude %>;
+        var mapProp = {
+            center: new google.maps.LatLng(latitude,longitude),
+            zoom: 15,
+            mapTypeControlOptions: {
+              mapTypeIds: [],
+            },
+        };
+        
+        var map = new google.maps.Map(document.getElementById("map"),mapProp); 
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latitude, longitude),
+            map: map
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: `
+                <div>
+                    <h4>${'<%= restaurant.name %>'}</h4>
+                    <h6>${'<%= restaurant.address %>'}</h6>
+                </div>
+            `
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+        }); 
+    }    
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= APIKey %>&callback=initMap"></script>
 
 <%- include('partials/footer.ejs') %>

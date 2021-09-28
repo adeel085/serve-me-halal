@@ -16,7 +16,9 @@ router.get("/:id", async (req, res) => {
     res.render("restaurant", {
         baseURL: config.web.baseURL,
         appName: config.web.appName,
-        restaurant: restaurant
+        restaurant: restaurant,
+        APIKey: config.google.APIKey,
+        user: req.session.user ? req.session.user : undefined,
     });
 });
 

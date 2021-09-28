@@ -8,7 +8,8 @@ let router = express.Router();
 router.get("/", (req, res) => {
     res.render("index", {
         baseURL: config.web.baseURL,
-        appName: config.web.appName
+        appName: config.web.appName,
+        user: req.session.user ? req.session.user : undefined,
     });
 });
 

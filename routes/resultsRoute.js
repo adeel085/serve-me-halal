@@ -24,14 +24,14 @@ router.get("/", async (req, res) => {
 
     dbConnection.disconnect(conn);
 
-    console.log(restaurants);
-
     res.render("results", {
         baseURL: config.web.baseURL,
         appName: config.web.appName,
         restaurants: restaurants,
         location: location,
-        search: foodType
+        search: foodType,
+        APIKey: config.google.APIKey,
+        user: req.session.user ? req.session.user : undefined,        
     });
 });
 

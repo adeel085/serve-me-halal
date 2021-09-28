@@ -25,6 +25,39 @@
 
 <script>
     $("body").addClass("login-page");
+
+    $(document).ready(function() {
+
+        $("#login-btn").click(function(e) {
+            
+            var email = $("#email").val();
+            var password = $("#pwd").val();
+
+            // Peform Validation Here Later
+
+            $.ajax({
+                url: "<%= baseURL %>/login",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    email: email,
+                    password: password,
+                },
+                success: (res) => {
+                    if(res === 200) {
+                        window.location.href = "<%= baseURL %>/"
+                    }   
+                    else if(res === 503) {
+                        alert("Invalid Credentials");
+                    }                 
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
+
+        })
+    });
 </script>
 
 <%- include('partials/footer.ejs') %>

@@ -72,13 +72,16 @@
 
 
 <script>
-    function myMap() {
+    function initMap() {
         
         var latitude = <%= restaurants[0].latitude %>;
         var longitude = <%= restaurants[0].longitude %>;
         var mapProp = {
             center: new google.maps.LatLng(latitude,longitude),
             zoom: 15,
+            mapTypeControlOptions: {
+                mapTypeIds: [],
+            },
         };
         
         var map = new google.maps.Map(document.getElementById("map"),mapProp);        
@@ -105,5 +108,5 @@
         }); 
     }    
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPnbUmYNmXy3aX9T71GT6BjRxFWC8z_1w&callback=myMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= APIKey %>&callback=initMap"></script>
 <%- include('partials/footer.ejs') %>

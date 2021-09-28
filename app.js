@@ -11,6 +11,10 @@ app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(expressSession({ secret: 'max', saveUninitialized: false, resave: false }));
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    next();
+})
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
@@ -19,12 +23,14 @@ let loginRoute = require("./routes/loginRoute");
 let signupRoute = require("./routes/signupRoute");
 let resultsRoute = require("./routes/resultsRoute");
 let restaurantRoute = require("./routes/restaurantRoute");
+let logoutRoute = require("./routes/logoutRoute");
 
 app.use("/", indexRoute);
 app.use("/login", loginRoute);
 app.use("/results", resultsRoute);
 app.use("/restaurant", restaurantRoute);
 app.use("/signup", signupRoute);
+app.use("/logout", logoutRoute);
 
 // Start listening on port
 app.listen(config.web.port, () => {

@@ -88,5 +88,41 @@ module.exports = {
                     resolve(rows[0]);
             });
         });
+    },
+
+    addNewUser: (conn, name, email, password, type) => {
+        return new Promise((resolve, reject) => {
+            let sql = `INSERT INTO users(name, email, password, type) VALUES(?,?,?,?)`;
+            conn.query(sql, [name, email, password, type], (err, rows) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(rows[0]);
+            });
+        })
+    },
+
+    getUserByEmail: (conn, email) => {
+        return new Promise((resolve, reject) => {
+            let sql = `SELECT * FROM users WHERE email = ? LIMIT 1`;
+            conn.query(sql, [email], (err, rows) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(rows[0]);
+            });
+        })
+    },
+
+    getUserByEmailPassword: (conn, email, password) => {
+        return new Promise((resolve, reject) => {
+            let sql = `SELECT * FROM users WHERE email = ? AND password = ? LIMIT 1`;
+            conn.query(sql, [email, password], (err, rows) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(rows[0]);
+            });
+        })
     }
 };

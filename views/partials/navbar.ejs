@@ -13,12 +13,21 @@
                 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="button1" style="margin-right: 10px;" href="<%= baseURL %>/login">Login</a>
-                </li>
-                <li>
-                    <a class="button3" href="<%= baseURL %>/signup">Signup</a>
-                </li>
+                <% if (user === undefined) { %>
+                    <li>
+                       <a class="button1" style="margin-right: 10px;" href="<%= baseURL %>/login">Login</a>
+                    </li>
+                    <li>
+                        <a class="button3" href="<%= baseURL %>/signup">Signup</a>
+                    </li>
+                <%} else { %>
+                    <li>
+                        <a class="button3" style="margin-right: 10px;cursor: pointer;"><%= user.name %></a>
+                    </li>
+                    <li>
+                        <a class="button3" href="<%= baseURL %>/logout">Logout</a>
+                    </li>
+                <%}%>
             </ul>
         </div>
     </div>
