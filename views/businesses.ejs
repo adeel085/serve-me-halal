@@ -1,0 +1,34 @@
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<%- include('partials/addNewRestaurant.ejs') %>
+
+
+<div class="site-content">
+	<div class="restaurants-list-wrapper" style="margin-top: 20px">
+		<ul class="restaurants-list">
+			<% for(var i = 0; i < businesses.length; i++) { %>
+				<li>
+                	<div class="restaurant-primary-info">
+                        <div class="restaurant-img-wrapper">
+                            <img class="restaurant-image" src="<%= baseURL %>/images/restaurant1.jpeg">
+                        </div>
+                        <div class="restaurant-info-wrapper">
+                            <a style="cursor: pointer;" class="restaurant-name-link" href="<%= baseURL %>/businesses/<%= businesses[i].id %>"><%= businesses[i].name %></a>
+                            <div class="restaurant-addr-info">
+                                <i class="fas fa-map-marker-alt"></i> <%= businesses[i].address %>
+                            </div>
+                            <div class="restaurant-short-description">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla a leo non pharetra. In fermentum dolor sit amet arcu tincidunt finibus. Sed sed suscipit massa. Maecenas porta venenatis turpis, id blandit magna commodo sed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>				
+			<%}%>	
+		</ul>
+	</div>    
+
+</div>
+
+<%- include('partials/footer.ejs') %>

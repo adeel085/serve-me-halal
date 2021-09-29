@@ -1,0 +1,75 @@
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<%- include('partials/addNewRestaurant.ejs') %>
+
+<div class="site-content">
+	<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Website</th>
+			<th>Status</th>
+		</thead>
+		<tbody>
+			<% for(var i = 0; i < requests.length; i++) { %>
+				<tr>
+					<td style="cursor: pointer;" onclick="openRestaurant(<%= requests[i].restaurant_id %>)"><%= requests[i].name %></td>
+					<td style="cursor: pointer;" onclick="openRestaurant(<%= requests[i].restaurant_id %>)"><%= requests[i].phone %></td>
+					<td style="cursor: pointer;" onclick="openRestaurant(<%= requests[i].restaurant_id %>)"><%= requests[i].email %></td>
+					<td style="cursor: pointer;" onclick="openRestaurant(<%= requests[i].restaurant_id %>)"><%= requests[i].website %></td>
+					<td>
+						<select id="select-<%= i %>">
+							<option value="denied"
+							<% if(requests[i].status === "denied") { %>
+								selected
+							<% } %>
+							>Denied</option>						
+							<option value="verified"
+							<% if(requests[i].status === "verified") { %>
+								selected
+							<% } %>
+							>Verified</option>
+							<option value="pending"
+							<% if(requests[i].status === "pending") { %>
+								selected
+							<% } %>
+							>Pending</option>							
+						</select>						
+					</td>
+					<td><button onclick="update(<%= requests[i].restaurant_id %>, `select-<%= i %>`, <%= requests[i].user_id %>)">Update</button></td>
+				</tr>
+			<%}%>
+		</tbody>		
+	</table>
+</div>
+<script type="text/javascript">
+	function openRestaurant(restaurantID) {
+		window.location.href = `<%= baseURL %>/restaurant/${restaurantID}`;
+	}
+
+	function update(restaurantID, selectID, userID) {
+		var status = $(`#${selectID}`).find(":selected").text();
+		$.ajax({
+            url: "<%= baseURL %>/admin/update",
+            method: "POST",
+            dataType: "json",
+            data: {
+                restaurantID: restaurantID,
+                status: status,
+                userID: userID,
+            },
+            success: (res) => {
+                if(res === 200) {
+                	window.location.reload();
+                }
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        });
+	}
+</script>
+<%- include('partials/footer.ejs') %>

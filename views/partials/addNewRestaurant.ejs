@@ -1,0 +1,153 @@
+<div id="addRestaurantModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Restaurant</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-name">Name:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-name" placeholder="Enter name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-description">Description:</label>
+                        <div class="col-sm-10">          
+                            <input type="text" class="form-control" id="add-restaurant-description" placeholder="Enter Description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-cuisine">Cuisine:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-cuisine" placeholder="Enter cuisine">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-website">Website:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-website" placeholder="Enter website">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-facebook">Facebook:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-facebook" placeholder="Enter Facebook">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-phone">Phone:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-phone" placeholder="Enter Phone #">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-address">Address:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-address" placeholder="Enter Address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-halal-status">Halal Status:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-halal-status" placeholder="Enter Halal Status">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-working-hours">Working Hours:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-working-hours" placeholder="Enter Working Hours">
+                        </div>
+                    </div>   
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-latitude">Latitude:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-latitude" placeholder="Enter Latitude">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-longitude">Longitude:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-longitude" placeholder="Enter Longitude">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-image-link">Image Link:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-image-link" placeholder="Enter Image Link">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="add-restaurant-zipcode">Zipcode:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="add-restaurant-zipcode" placeholder="Enter Zipcode">
+                        </div>
+                    </div>                    
+                    <div class="form-group">        
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="button2" style="padding: 8px 12px;" id="add-restaurant-submit-btn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+  
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#add-restaurant-btn").click(function() {
+            $("#addRestaurantModal").modal("show");
+        })
+
+        $("#add-restaurant-submit-btn").click(function() {
+            var name = $("#add-restaurant-name").val()
+            var description = $("#add-restaurant-description").val()
+            var cuisine = $("#add-restaurant-cuisine").val()
+            var website = $("#add-restaurant-website").val()
+            var facebook = $("#add-restaurant-facebook").val()
+            var phone = $("#add-restaurant-phone").val()
+            var address = $("#add-restaurant-address").val()
+            var halalStatus = $("#add-restaurant-halal-status").val()
+            var workingHours = $("#add-restaurant-working-hours").val()
+            var latitude = $("#add-restaurant-latitude").val()
+            var longitude = $("#add-restaurant-longitude").val()
+            var imageLink = $("#add-restaurant-image-link").val()
+            var zipCode = $("#add-restaurant-zipcode").val()
+
+            $.ajax({
+                url: "<%= baseURL %>/addRestaurant",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    name: name,
+                    description: description,
+                    cuisine: cuisine,
+                    website: website,
+                    facebook: facebook,
+                    phone: phone,
+                    address: address,
+                    halalStatus: halalStatus,
+                    workingHours: workingHours,
+                    latitude: latitude,
+                    longitude: longitude,
+                    imageLink: imageLink,
+                    zipCode: zipCode,
+                },
+                success: (res) => {
+                    console.log(res);
+                    $("#addRestaurantModal").modal("hide");
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
+        })
+</script>

@@ -22,4 +22,17 @@ router.get("/:id", async (req, res) => {
     });
 });
 
+router.post("/:id/claimBusiness", async (req, res) => {
+
+    let restaurantID = req.params.id;
+    let { name, email, phone, website } = req.body;
+
+    let conn = await dbConnection.connect();
+    await dbHelper.addClaimRequest(conn, req.session.user.id, restaurantID, name, phone, email, website, "pending");
+    dbConnection.disconnect(conn);
+
+    res.json(200);
+
+});
+
 module.exports = router;

@@ -22,8 +22,21 @@
                     </li>
                 <%} else { %>
                     <li>
-                        <a class="button3" style="margin-right: 10px;cursor: pointer;"><%= user.name %></a>
+                        <a class="button3" style="margin-right: 10px;cursor: pointer;" id="add-restaurant-btn">Add New Restaurant</a>
                     </li>
+                    <% if (user.type === 'admin') { %>
+                    <li>
+                        <a class="button3" style="margin-right: 10px;cursor: pointer;" href="<%= baseURL %>/admin/restaurantRequests">Restaurant Requests</a>
+                    </li>
+                    <li>
+                        <a class="button3" style="margin-right: 10px;cursor: pointer;" href="<%= baseURL %>/admin/claimRequests">Claim Requests</a>
+                    </li>                        
+                    <%}%>
+                    <% if (user.type === 'user') { %>
+                    <li>
+                        <a class="button3" style="margin-right: 10px;cursor: pointer;" href="<%= baseURL %>/businesses">My Businesses</a>
+                    </li>                        
+                    <%}%>
                     <li>
                         <a class="button3" href="<%= baseURL %>/logout">Logout</a>
                     </li>

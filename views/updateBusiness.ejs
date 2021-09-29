@@ -1,0 +1,111 @@
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<div class="site-content">
+    <div style="margin-top: 20px;margin-left: 10px;width: 300px;display: flex;flex-direction: column;align-items: flex-end;">
+        <div style="display: flex;margin-top: 10px">
+            <label>Name:</label>
+            <input style="margin-left: 15px" type="text" id="name" value="<%= restaurant.name %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Description:</label>
+            <input style="margin-left: 15px" type="text" id="description" value="<%= restaurant.description %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Cuisine:</label>
+            <input style="margin-left: 15px" type="text" id="cuisine" value="<%= restaurant.cuisine %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Website:</label>
+            <input style="margin-left: 15px" type="text" id="website" value="<%= restaurant.website %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Faceebook:</label>
+            <input style="margin-left: 15px" type="text" id="facebook" value="<%= restaurant.facebook %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Faceebook:</label>
+            <input style="margin-left: 15px" type="text" id="phone" value="<%= restaurant.phone %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Faceebook:</label>
+            <input style="margin-left: 15px" type="text" id="address" value="<%= restaurant.address %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Halal Status:</label>
+            <input style="margin-left: 15px" type="text" id="halal-status" value="<%= restaurant.halal_status %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Working Hours:</label>
+            <input style="margin-left: 15px" type="text" id="working-hours" value="<%= restaurant.working_hours %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Latitude:</label>
+            <input style="margin-left: 15px" type="text" id="latitude" value="<%= restaurant.latitude %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Latitude:</label>
+            <input style="margin-left: 15px" type="text" id="longitude" value="<%= restaurant.longitude %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Image Link:</label>
+            <input style="margin-left: 15px" type="text" id="image-link" value="<%= restaurant.image_link %>">
+        </div>
+        <div style="display: flex;margin-top: 10px">
+            <label>Zip Code:</label>
+            <input style="margin-left: 15px" type="text" id="zipcode" value="<%= restaurant.zip_code %>">
+        </div>
+        <input style="margin-top: 10px;padding: 10px" class="button2" id="search-btn" type="button" value="Update" onclick="update()">
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function update() {
+        var name = $("#name").val();
+        var description = $("#description").val();
+        var cuisine = $("#cuisine").val();
+        var website = $("#website").val();
+        var facebook = $("#facebook").val();
+        var phone = $("#phone").val();
+        var address = $("#address").val();
+        var halalStatus = $("#halal-status").val();
+        var workingHours = $("#working-hours").val();
+        var latitude = $("#latitude").val();
+        var longitude = $("#longitude").val();
+        var imageLink = $("#image-link").val();
+        var zipcode = $("#zipcode").val();
+
+        // Perform Validation Here Later
+
+        $.ajax({
+            url: "<%= baseURL %>/businesses/<%= restaurant.id %>",
+            method: "POST",
+            dataType: "json",
+            data: {
+                name: name,
+                description: description,
+                cuisine: cuisine,
+                website: website,
+                facebook: facebook,
+                phone: phone,
+                address: address,
+                halalStatus: halalStatus,
+                workingHours: workingHours,
+                latitude: latitude,
+                longitude: longitude,
+                imageLink: imageLink,
+                zipcode: zipcode,
+            },
+            success: (res) => {
+                window.location.href = "<%= baseURL %>/restaurant/" + res;
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        });
+    }
+
+</script>
+<%- include('partials/footer.ejs') %>

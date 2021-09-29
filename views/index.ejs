@@ -2,7 +2,10 @@
 
 <%- include('partials/navbar.ejs') %>
 
-<div class="site-content">
+<%- include('partials/addNewRestaurant.ejs') %>        
+
+<div class="site-content">    
+
     <div class="map-bg" style="background-image: url('<%= baseURL %>/images/map.PNG');">
         <div class="map-bg-overlay">
             <div class="home-form-area">
@@ -39,6 +42,9 @@
 
 <script>
     $(document).ready(function() {
+
+        
+
         $("#search-btn").click(function() {
             let foodType = $("#food-type-input").val().trim();
             let location = $("#location-input").val().trim();

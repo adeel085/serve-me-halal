@@ -24,6 +24,8 @@ let signupRoute = require("./routes/signupRoute");
 let resultsRoute = require("./routes/resultsRoute");
 let restaurantRoute = require("./routes/restaurantRoute");
 let logoutRoute = require("./routes/logoutRoute");
+let businessesRoute = require("./routes/businessesRoute");
+let adminRoute = require("./routes/adminRoute");
 
 app.use("/", indexRoute);
 app.use("/login", loginRoute);
@@ -31,6 +33,8 @@ app.use("/results", resultsRoute);
 app.use("/restaurant", restaurantRoute);
 app.use("/signup", signupRoute);
 app.use("/logout", logoutRoute);
+app.use("/businesses", businessesRoute);
+app.use("/admin", adminRoute);
 
 // Start listening on port
 app.listen(config.web.port, () => {

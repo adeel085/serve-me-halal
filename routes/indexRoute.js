@@ -27,4 +27,29 @@ router.get("/foodTypes", async (req, res) => {
     res.send(result);
 });
 
+router.post("/addRestaurant", async (req, res) => {
+    if(req.session.user) {
+        let { name, description, cuisine, website, facebook, phone,
+              address, halalStatus, workingHours, latitude, longitude,
+              imageLink, zipCode } = req.body;
+
+        if(req.session.user.type === "admin") {
+            let conn = await dbConnection.connect();
+            let result = await dbHelper.addNewRestaurant(conn, name, description, cuisine, website, facebook, phone, address, halalStatus, workingHours, latitude, longitude, imageLink, zipCode, 0, "true");
+            dbConnection.disconnect(conn);
+            res.json(200);
+        }
+        else {
+            let conn = await dbConnection.connect();
+            let result = await dbHelper.addNewRestaurantRequest(conn, name, description, cuisine, website, facebook, phone, address, halalStatus, workingHours, latitude, longitude, imageLink, zipCode, req.session.user.id, "false");
+            dbConnection.disconnect(conn);
+
+            res.json(200);
+        }        
+    }
+    else {
+        res.redirect("/login");
+    }
+})
+
 module.exports = router;

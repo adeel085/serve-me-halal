@@ -1,3 +1,48 @@
     <script src="<%= baseURL %>/js/index.js"></script>
+    <script type="text/javascript">
+    	function validateEmail(email) {
+    		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    		return re.test(String(email).toLowerCase());
+		}
+
+		function validateSignupForm(name, email, password) {
+			if(name.length < 1 || email.length < 1 || password.length < 1) {
+				return "All Fields are requried";
+			}
+			else if(!validateEmail(email)) {
+				return "Invalid Email."
+			}
+			else if(password.length < 8) {
+				return "Minimum password length is 8"
+			}
+			else {
+				return "valid";
+			}
+		}
+
+		function validateLoginForm(email, password) {
+			if(email.length < 1 || password.length < 1) {
+				return "All Fields are requried";
+			}
+			else if(!validateEmail(email)) {
+				return "Invalid Email."
+			}
+			else {
+				return "valid";	
+			}
+		}
+
+		function validateClaimBusinessForm(name, phone, email, website) {
+			if(name.length < 1 || phone.length < 1 || email.length < 1) {
+				return "Name, Phone and Email Fields are required";
+			}
+			else if(!validateEmail(email)) {
+				return "Invalid Email."
+			}
+			else {
+				return "valid";
+			}
+		}
+    </script>
 </body>
 </html>

@@ -38,30 +38,34 @@
             var email = $("#email").val();
             var password = $("#pwd").val();
 
-            // Peform Validation Here Later
-
-            $.ajax({
-                url: "<%= baseURL %>/signup",
-                method: "POST",
-                dataType: "json",
-                data: {
-                    fullName: fullName,
-                    email: email,
-                    password: password,
-                },
-                success: (res) => {
-                    if(res === 200) {
-                        alert("You account has been created. You can now login.")
-                        window.location.href = "<%= baseURL %>/login";
+            var validation = validateSignupForm(fullName, email, password);
+            if(validation === "valid") {
+                $.ajax({
+                    url: "<%= baseURL %>/signup",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        fullName: fullName,
+                        email: email,
+                        password: password,
+                    },
+                    success: (res) => {
+                        if(res === 200) {
+                            alert("You account has been created. You can now login.")
+                            window.location.href = "<%= baseURL %>/login";
+                        }
+                        else if(res === 409) {
+                            alert("Email already registered.")
+                        }
+                    },
+                    error: (err) => {
+                        console.log(err);
                     }
-                    else if(res === 409) {
-                        alert("Email already registered.")
-                    }
-                },
-                error: (err) => {
-                    console.log(err);
-                }
-            });
+                });
+            }
+            else {
+                alert(validation);
+            }
         })
     });
 </script>

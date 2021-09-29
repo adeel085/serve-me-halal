@@ -1,0 +1,95 @@
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<%- include('partials/addNewRestaurant.ejs') %>
+
+<div class="site-content">
+	<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Cuisine</th>
+			<th>Website</th>
+			<th>Facebook</th>
+			<th>Phone</th>
+			<th>Address</th>
+			<th>Halal Status</th>
+			<th>Working Hours</th>
+			<th>Latitude</th>
+			<th>Longitude</th>
+			<th>Image Link</th>
+			<th>Zip Code</th>
+		</thead>
+		<tbody>
+			<% for(var i = 0; i < requests.length; i++) { %>
+				<tr>
+					<td><%= requests[i].name %></td>
+					<td><%= requests[i].description %></td>
+					<td><%= requests[i].cuisine %></td>
+					<td><%= requests[i].website %></td>
+					<td><%= requests[i].facebook %></td>
+					<td><%= requests[i].phone %></td>
+					<td><%= requests[i].address %></td>
+					<td><%= requests[i].halal_status %></td>
+					<td><%= requests[i].working_hours %></td>
+					<td><%= requests[i].latitude %></td>
+					<td><%= requests[i].longitude %></td>
+					<td><%= requests[i].image_link %></td>
+					<td><%= requests[i].zip_code %></td>
+					<td>
+						<select id="select-<%= i %>">
+							<option value="add">Add</option>
+							<option value="delete">Delete</option>
+						</select>
+					</td>
+					<td><button onclick="update(<%= requests[i].id %>, `select-<%= i %>`, <%= requests[i].user_id %>)">Update</button></td>
+				</tr>
+			<% } %>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript">
+	function update(restaurantID, selectID, userID) {
+		var status = $(`#${selectID}`).find(":selected").text();
+		console.log(status);
+		if(status === "Add") {
+			$.ajax({
+            	url: "<%= baseURL %>/admin/update/add",
+	            method: "POST",
+	            dataType: "json",
+	            data: {
+	                restaurantID: restaurantID,
+	            },
+	            success: (res) => {
+	                if(res === 200) {
+	                	window.location.reload();
+	                }
+	            },
+	            error: (err) => {
+	                console.log(err);
+	            }
+        	});
+		}
+		else if(status === "Delete") {
+			$.ajax({
+	            url: "<%= baseURL %>/admin/update/delete",
+	            method: "POST",
+	            dataType: "json",
+	            data: {
+	                restaurantID: restaurantID,
+	            },
+	            success: (res) => {
+	                if(res === 200) {
+	                	window.location.reload();
+	                }
+	            },
+	            error: (err) => {
+	                console.log(err);
+	            }
+	        });
+		}
+	}
+</script>
+<%- include('partials/footer.ejs') %>
