@@ -59,7 +59,9 @@ router.get("/long-island-and-new-york", async (req, res) => {
         appName: config.web.appName,
         restaurants: filteredRestaurants,
         location: "Long Island & New York",
-        search: ""
+        search: "",
+        APIKey: config.google.APIKey,
+        user: req.session.user ? req.session.user : undefined,
     });
 });
 
