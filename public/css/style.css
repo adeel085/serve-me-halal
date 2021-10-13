@@ -285,6 +285,12 @@ body.results-list-hidden-map-revealed #mobile-reveal-list-btn {
     #reveal-map-btn {
         display: inline-block;
     }
+    .results-area {
+        margin-top: 30px;
+    }
+    #mobile-reveal-list-btn {
+        margin-top: 50px;
+    }
 }
 
 
@@ -392,6 +398,7 @@ body.results-list-hidden-map-revealed #mobile-reveal-list-btn {
 
 
 /* Login page & Signup page CSS */
+
 .login-page .home-form-area {
     width: 470px;
     padding: 38px 51px;
@@ -404,4 +411,32 @@ body.results-list-hidden-map-revealed #mobile-reveal-list-btn {
 }
 .login-page .home-form-area {
     border-radius: 0;
+}
+
+/* Long Island */
+.long-island-title-wrapper {
+    position: relative;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+    margin-bottom: 0px;
+    color: #ab1a56
+}
+.long-island-title-wrapper h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+.reveal-map-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.long-island-title-wrapper > div {
+    position: fixed;
+    width: 100%;
+    border-bottom: 2px solid #9b9b9b;
+    background-color: #fff;
 }
