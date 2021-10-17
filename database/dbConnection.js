@@ -10,9 +10,9 @@ module.exports = {
                 user     : config.db.user,
                 password : config.db.password,
                 database : config.db.dbName,
-                ssl  : {
-                    ca : fs.readFileSync(__dirname + '\\ca-certificate.crt')
-                }
+                // ssl  : {
+                //     ca : fs.readFileSync(__dirname + '\\ca-certificate.crt')
+                // }
             });
     
             // connect to database with the config above
